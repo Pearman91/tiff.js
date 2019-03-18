@@ -2,10 +2,10 @@
 
 declare var loadModule: (options: Tiff.InitializeOptions) => typeof Module;
 declare class Tiff {
-    private _filename;
-    private _tiffPtr;
+    public _filename;
+    public _tiffPtr;
     private static uniqueIdForFileName;
-    private static Module;
+    public static Module;
     static initialize(options: Tiff.InitializeOptions): void;
     constructor(params: Tiff.Params);
     width(): number;

@@ -7,6 +7,10 @@ zlib-*
 *.o
 \#*
 .\#*
+*.swp
+jpeg-9b/
+jpeg-9c/
+*.tar.gz
 
 tiff.raw.js
 tiff_tag.*

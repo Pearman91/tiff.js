@@ -1,9 +1,9 @@
 #!/bin/bash
 
 export EMCC_CFLAGS="-O2"
-ZLIB_PKGVER=1.2.8
-LIBTIFF_PKGVER=4.0.6
-LIBJPEG_PKGVER=9b
+ZLIB_PKGVER=1.2.11
+LIBTIFF_PKGVER=4.0.10
+LIBJPEG_PKGVER=9c
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # build zlib
@@ -54,6 +54,8 @@ emcc -o tiff.raw.js \
 "'_TIFFSetDirectory',"\
 "'_TIFFCurrentDirectory',"\
 "'_TIFFReadDirectory',"\
+"'_TIFFNumberOfStrips',"\
+"'_TIFFReadEncodedStrip',"\
 "'__TIFFmalloc',"\
 "'__TIFFfree',"\
 "'_GetField',"\
