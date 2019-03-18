@@ -1,11 +1,9 @@
-/// <reference path="emscripten.d.ts"/>
-
 declare var loadModule: (options: Tiff.InitializeOptions) => typeof Module;
 declare class Tiff {
-    public _filename;
-    public _tiffPtr;
+    private _filename;
+    private _tiffPtr;
     private static uniqueIdForFileName;
-    public static Module;
+    private static Module;
     static initialize(options: Tiff.InitializeOptions): void;
     constructor(params: Tiff.Params);
     width(): number;
@@ -22,23 +20,21 @@ declare class Tiff {
     private static createFileSystemObjectFromBuffer(buffer);
 }
 declare module Tiff {
-    export interface InitializeOptions {
+    interface InitializeOptions {
         TOTAL_MEMORY?: number;
     }
-    export interface Params {
+    interface Params {
         buffer: ArrayBuffer;
     }
-    export class Exception {
+    class Exception {
         message: string;
         name: string;
         constructor(message: string);
     }
-    export var Tag: any;
+    var Tag: typeof TiffTag;
 }
 declare var process: any;
 declare var require: any;
 declare var module: any;
 declare var define: any;
-declare var self: any;
-
-export = Tiff;
+declare var self: Window;
