@@ -13,6 +13,7 @@ jpeg-9c/
 *.tar.gz
 
 tiff.raw.js
+tiff.raw.wasm
 tiff_tag.*
 
 node_modules/
