@@ -9,8 +9,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 emcc -o tiff.raw.js \
     -I ./tiff-${LIBTIFF_PKGVER}/libtiff \
     --memory-init-file 0 \
-	-s FORCE_FILESYSTEM=1 \
+    -s FORCE_FILESYSTEM=1 \
     -s ALLOW_MEMORY_GROWTH=1 \
+    -s WASM=1 \
     -s EXPORTED_FUNCTIONS="["\
 "'_TIFFOpen',"\
 "'_TIFFClose',"\
@@ -19,14 +20,18 @@ emcc -o tiff.raw.js \
 "'_TIFFReadRGBAImageOriented',"\
 "'_TIFFSetDirectory',"\
 "'_TIFFCurrentDirectory',"\
+"'_TIFFLastDirectory',"\
 "'_TIFFReadDirectory',"\
 "'_TIFFNumberOfStrips',"\
 "'_TIFFReadEncodedStrip',"\
 "'_TIFFStripSize',"\
 "'__TIFFmalloc',"\
 "'__TIFFfree',"\
-"'_GetField']"\
-	-s EXTRA_EXPORTED_RUNTIME_METHODS=['FS'] \
+"'_GetField',"\
+"'_ReadDirectory',"\
+"'_SetDirectory',"\
+"'_LastDirectory']"\
+    -s EXTRA_EXPORTED_RUNTIME_METHODS="['FS', 'cwrap', 'ccall']" \
     export.c \
     tiff-${LIBTIFF_PKGVER}/libtiff/.libs/libtiff.a \
     zlib-${ZLIB_PKGVER}/libz.a \

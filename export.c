@@ -6,3 +6,15 @@ int GetField(TIFF *tiff, uint32 field) {
   TIFFGetField(tiff, field, &value);
   return value;
 }
+
+int LastDirectory(TIFF *tiff) {
+  return TIFFLastDirectory(tiff);
+}
+
+int ReadDirectory(TIFF *tiff) {
+  return TIFFReadDirectory(tiff);
+}
+
+int SetDirectory(TIFF *tiff, int dir) {
+  return TIFFSetDirectory(tiff, dir);
+}
