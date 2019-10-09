@@ -28,6 +28,7 @@ emcc -o tiff.raw.js \
 "'__TIFFmalloc',"\
 "'__TIFFfree',"\
 "'_GetField',"\
+"'_GetStringField',"\
 "'_ReadDirectory',"\
 "'_SetDirectory',"\
 "'_LastDirectory']"\
