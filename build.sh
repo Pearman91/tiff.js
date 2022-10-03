@@ -7,7 +7,7 @@ LIBJPEG_PKGVER=9c
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # build zlib
-wget http://zlib.net/current/zlib-${ZLIB_PKGVER}.tar.gz
+wget http://zlib.net/fossils/zlib-${ZLIB_PKGVER}.tar.gz
 tar xf zlib-${ZLIB_PKGVER}.tar.gz
 rm zlib-${ZLIB_PKGVER}.tar.gz
 cd zlib-${ZLIB_PKGVER}

@@ -9,6 +9,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 emcc -o tiff.raw.js \
     -I ./tiff-${LIBTIFF_PKGVER}/libtiff \
     --memory-init-file 0 \
+    --bind -l"workerfs.js" \
     -s FORCE_FILESYSTEM=1 \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s WASM=1 \
@@ -32,7 +33,7 @@ emcc -o tiff.raw.js \
 "'_ReadDirectory',"\
 "'_SetDirectory',"\
 "'_LastDirectory']"\
-    -s EXTRA_EXPORTED_RUNTIME_METHODS="['FS', 'cwrap', 'ccall']" \
+    -s EXPORTED_RUNTIME_METHODS="['FS', 'cwrap', 'ccall']" \
     export.c \
     tiff-${LIBTIFF_PKGVER}/libtiff/.libs/libtiff.a \
     zlib-${ZLIB_PKGVER}/libz.a \
