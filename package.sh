@@ -19,6 +19,7 @@ emcc -o tiff.raw.js \
 "'_TIFFGetField',"\
 "'_TIFFReadRGBAImage',"\
 "'_TIFFReadRGBAImageOriented',"\
+"'_TIFFNumberOfDirectories',"\
 "'_TIFFSetDirectory',"\
 "'_TIFFCurrentDirectory',"\
 "'_TIFFLastDirectory',"\
