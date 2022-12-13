@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>wasm-vips</title>
+</head>
+
+<body>
+
+    <input type="file" id="image" name="image" accept="image/tif, image/tiff">
+
+</body>
+
+<script src="/tiff.raw.js"></script>
+<script src="/tiff.js"></script>
+<script>
+    document.querySelector('input').addEventListener('change', async (event) => {
+        const buffer = await event.target.files[0].arrayBuffer();
+        const fname = "image"
+        FS.createDataFile("/", fname, new Uint8Array(buffer), true, false);
+
+        // The following code is a port of the [TIFFRGBAImage Support] example from http://www.libtiff.org/libtiff.html
+
+        const tif = TIFFOpen(fname, "r");
+
+        const width = TIFFGetField(tif, TiffTag.IMAGEWIDTH);
+        const height = TIFFGetField(tif, TiffTag.IMAGELENGTH);
+        const nrOfPixels = width * height;
+        const uint32Size = 4;
+        const raster = TIFFMalloc(nrOfPixels * uint32Size); // output will be RGBA
+        if (!raster) {
+            throw 'TIFFMalloc failed';
+        }
+
+        try {
+            const stopOnError = true;
+            console.log("Reading tiff image");
+            if (TIFFReadRGBAImage(tif, width, height, raster, stopOnError)) {
+                console.log("Copying buffer");
+                const data = new Uint8ClampedArray(Module.HEAPU8.buffer, raster, nrOfPixels * uint32Size);
+                console.log(data);
+                console.log("Creating ImageData");
+                const imageData = new ImageData(data, width, height);
+                console.log("Creating Canvas");
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                document.body.appendChild(canvas);
+                const ctx = canvas.getContext("2d");
+                ctx.putImageData(imageData, 0, 0);
+                ctx.translate(canvas.width, 0);
+                ctx.scale(-1, 1);
+            }
+            else {
+                throw "TIFFReadRGBAImage failed";
+            }
+        }
+        finally {
+            TIFFFree(raster);
+        }
+    }, false)
+</script>
+
+</html>
