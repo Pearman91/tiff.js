@@ -30,9 +30,6 @@ wget http://download.osgeo.org/libtiff/tiff-${LIBTIFF_PKGVER}.tar.gz
 tar xzvf tiff-${LIBTIFF_PKGVER}.tar.gz
 rm tiff-${LIBTIFF_PKGVER}.tar.gz
 cd tiff-${LIBTIFF_PKGVER}
-# see: https://github.com/kripken/emscripten/issues/662
-patch -p0 < ../tif_open.c.patch
-patch -p0 < ../tiff.h.patch
 emconfigure ./configure \
             --with-zlib-include-dir=${DIR}/zlib-${ZLIB_PKGVER}/ \
             --with-zlib-lib-dir=${DIR}/zlib-${ZLIB_PKGVER}/ \
