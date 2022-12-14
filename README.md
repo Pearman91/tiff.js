@@ -1,40 +1,25 @@
-# tiff.js
+# LibTIFF-wasm.js
 
-tiff.js is a port of the LibTIFF by compiling the LibTIFF C code with Emscripten to WebASM
+`LibTIFF-wasm.js` is an unofficial port of [LibTIFF](http://www.libtiff.org/) to WebAssembly using [Emscripten](https://emscripten.org/).
 
-## Setup and build on vanilla Ubuntu
+## Build
 
-Tested on Ubuntu 20.04 virtual machine running in Hyper-V.
+This project builds using docker (linux mode)
 
-Install dependencies:
+### Windows
+Run `build.cmd`
 
-    sudo apt install make
-    sudo apt install git
-
-Install and activate emscripten:
-
-    git clone https://github.com/emscripten-core/emsdk.git
-    cd emsdk
-    git pull
-    ./emsdk install latest
-    ./emsdk activate latest
-    echo 'source "/home/USERNAME/DIRNAME/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
-    source "/home/USERNAME/DIRNAME/emsdk/emsdk_env.sh"
-
-Clone tiff.js repo and build Wasm and JavaScript files:
-
-    cd ..
-    git clone https://github.com/Pearman91/tiff.js.git
-    cd tiff.js/
-    ./build.sh
-
-
+### Linux
+- TODO: (Port build.cmd to bash)
 
 ## Demo
 
-The WebASM compiled version is used by [webgl-neuron](https://github.com/Twinklebear/webgl-neuron).
-
+Launch `index.html` in a browser for a basic file picker demo to display a TIFF image
 
 ## License
 
 The LibTIFF is LibTIFF Software License, zlib and additional code are zlib License.
+
+## Attribution
+
+This repository is a fork from https://github.com/Twinklebear/tiff.js
